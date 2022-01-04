@@ -1,0 +1,76 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Xorn_Globe(0);
+DB_Xorn_Globe(1);
+DB_Xorn_Globe(2);
+DB_Xorn_Globe(3);
+KBSECTION
+
+IF
+NRD_OnPrepareHit((CHARACTERGUID)_Cause, (GUIDSTRING)_Target, _Damage, _Handle)
+AND
+HasActiveStatus(_Cause, "Xorn_Status_Resonating_Globe", 1)
+AND
+HasActiveStatus(_Cause, "Resonating_Globe_NOLOOP", 0)
+AND
+IsTagged(_Cause, "UNDEAD", 0)
+AND
+NRD_HitGetInt(_Handle, "HitType", _HitType)
+AND
+DB_Xorn_Globe(_HitType)
+THEN
+ApplyStatus(_Cause, "Resonating_Globe_NOLOOP", 6.0);
+ProcObjectTimer(_Cause, "ResonateNOLOOP", 500);
+Xorn_Globe_Start_Projectile((CHARACTERGUID)_Cause, (GUIDSTRING)_Target);
+
+IF
+NRD_OnPrepareHit((CHARACTERGUID)_Cause, (GUIDSTRING)_Target, _Damage, _Handle)
+AND
+HasActiveStatus(_Cause, "Xorn_Status_Resonating_Globe", 1)
+AND
+HasActiveStatus(_Cause, "Resonating_Globe_NOLOOP", 0)
+AND
+IsTagged(_Cause, "UNDEAD", 1)
+AND
+NRD_HitGetInt(_Handle, "HitType", _HitType)
+AND
+DB_Xorn_Globe(_HitType)
+AND
+NRD_HitGetString(_Handle, "DamageType", _Value)
+AND
+_Value != "Poison"
+AND
+_Value != "POISONED"
+THEN
+ProcObjectTimer(_Cause, "ResonateNOLOOP", 500);
+ApplyStatus(_Cause, "Resonating_Globe_NOLOOP", 6.0);
+Xorn_Globe_Start_Projectile((CHARACTERGUID)_Cause, (GUIDSTRING)_Target);
+
+PROC
+ProcObjectTimerFinished(_Cause, "ResonateNOLOOP")
+THEN
+RemoveStatus(_Cause, "Resonating_Globe_NOLOOP");
+
+PROC
+Xorn_Globe_Start_Projectile((CHARACTERGUID)_Cause, (GUIDSTRING)_Target)
+AND
+CharacterGetLevel(_Cause, _Level)
+AND
+GetPosition(_Cause, _x, _y, _z)
+THEN
+NRD_ProjectilePrepareLaunch();
+NRD_ProjectileSetString("SkillId", "Projectile_Xorn_Resonating_Globe_Proc");
+NRD_ProjectileSetInt("CasterLevel", _Level);
+NRD_ProjectileSetGuidString("Caster", _Cause);
+NRD_ProjectileSetInt("CanDeflect", 0);
+NRD_ProjectileSetGuidString("SourcePosition", _Cause);
+NRD_ProjectileSetGuidString("Source", _Cause);
+NRD_ProjectileSetVector3("TargetPosition", _x, _y, _z);
+NRD_ProjectileLaunch();
+PlayEffect(_Target, "RS3_FX_GP_Impacts_Wand_Air_01", "Dummy_BodyFX");
+
+
+EXITSECTION
+
+ENDEXITSECTION
