@@ -1,0 +1,202 @@
+ 3/16/2020 11:03 AM
+-Conflux among other skills now wait until their effects finish before ending the turn.
+-Removed unused stats screen info added by script extender. The tags tab is back.
+-Cleaned up Purifying Blaze. It will no longer damage ally undead and only heal allies within the area.
+-Scroll AP cost for Teleport and Netherswap fixed. The intended changes for scrolls where (Teleport 3, Netherswap 2, Epidemic of Fire 3, Hail Storm 4, Pyroclastic Erruption 4, Vaccum Aura 3, Bone Cage 2)
+-Sir Lora is now tagged AI_IGNORED and should now be totally ignored by enemies. (Why didn't they do this?)
+-Draconic Idol now only spawns for real Lizards and the Ancient Draconian can only be understood by real lizards. Dialogs also fixed.
+-Removed Surface information on Talent Walk It Off.
+-Shock Status is no longer removed if the character has both Virulent and Accelerant active and Virulent is not refreshed. 
+-Resilient enemies are no logner Immune to status effects of their types.
+-Mask of the ShapeShifter will no longer overlap with new active racial skills. Right now it's fairly strict and will remove active skills on equip then if the apropriate tags remain it will add the skills again when the mask is unequiped.
+-Adjusted base Armor templates for enemies (mostly strong variants) to scale more evenly in armor values. Physical values will still scale harder than magic given resistances however though I recall by Act 3 it got a little silly. Let me know how the new values feel.
+-Combat Reflexes Talent has been re-coded to only function with weapons and shields.
+
+3/17/2020 1:01 AM
+-Fixed Spirit Vision to apply when the player gets the skill and improved mod compatability.
+-Fixed first grade math on Glass Cannon.
+
+3/17/2020 12:42 PM
+-Cleaned up Elusive's Elusive Dodge interactions, animations and functionality.
+-Fixed Glass Cannon removal check. Should work properly now.
+-Re-added spanish.xml to properly describe curative properties of skills.
+
+3/17/2020 4:03 PM
+-Innate Talents should now be blocked from removal. 
+Feel free to mess with it to make sure. Need to double check this doesn't affect enemies but I'm fairly sure it doesn't.
+-Idol of Rebirth can no longer be crafted in combat.
+-Mirage Arrow no longer randomly teleports and summons the clone near the target struck.
+-Conflux Skill reduced in cost for testing purposes.
+
+3/18/2020 12:17 PM
+-Oily Carapace and Mass Oily Carapace now make characters immune to Slow for 2 turns.
+-Increased growth radius of (Player's) Rain Blood / Oil by 20% 150 cells from 120 by comparison Water is 250.
+-New Skill added "Faerie Fire" Reveal enemies within 6m and prevent them from going invisible. Enemies engulfed in the shimmering cloud suffer 20% dodge penalty for the duration. 1AP, 5CD req. 2 Huntsman.
+-New Skill added "Hydra’s Bile" Propel three volatile globs at chosen locations dealing 70% Poison in a 2 radius each producing poisonous clouds on impact that will explode if they strike an object applying Acid.
+-Swapped out Bone Offering Icon.
+-Tweaked some Act2 Encounters.
+
+3/19/2020 11:36 AM
+-Re-coded Innate Talents which should also fix Glass Cannon as they're all now logic checks if present, locked or unlocked. If the player selects Glass Cannon the Lone Wolf innate will be removed and can be added again by removing Glass Cannon. If you both on due to switching code it may require a trip to the respect mirror, disabling Glass Cannon then jumping back in and enabling it to set the script on the right settings.
+-Troll's Blood is now a non-scripted vampiric heal CD increase to 6 turns from 5.
+-New Rune line added to Runic Weaponry "Deflecting" 10/15/20% Reflection and buffed high teir damage bonus to 18% from 15%.
+-Potential exploit with Runic Weaponry fixed.
+-Just in case the Larian Spirit vision continues to override this mod's version the duration is now 999999 on cast which usually causes the game to give up counting and makes it permenant with an odd -28703 turn value.
+-Haunting Wraith now has a proper damage/heal ratio and it's tooltip updated describing it's passive 25% Lifesteal.
+-Enemy Elemental tornados now have proper display names.
+
+3/20/2020 4:45 PM
+- Earth Skill "Rain Oil" has been added back into the game.
+- Added redundancy script check for CHILL + CHILL = Frozen.
+- Weapon Accuracy penalty brought back at reduced values -10% from -20% per level and cap of -40% from -70%.
+- Conflux Status effcts updated to display their damage values.
+- Added the start of some new AI scripting to improve player/enemy interactions.
+- Air Skill added "Fulmination Spire" this is the group version of Arc Brand.
+
+3/21/2020 8:26 PM
+- Fixed some status and skill descriptions.
+- Changed Innate Talent script but removed refund portion. There's currently no rules regarding Glass Cannon usage.
+- Added new Conflux skill (Geo + Hydro) Deal 65% Physical, Magic and Piercing damage then siphon those values to yourself or an ally. Cures Suffocation, Acid, Bleeding, Knock Down and grants 25% Earth / Water Resistance for 1 turn.
+
+3/23/2020 12:42 PM
+- New Lvl 9 Warrior Skill added "Intercept" Single target Guardian Angel for 50% within 4m for 2 turns. 1AP / CD 5 turns.
+- Fixed Funneling Aegis script timing.
+- Fixed a few requirment needs on enemy skills.
+
+ — 3/24/2020 8:02 AM
+- Cleaned up Conflux Skill targeting a fair amount. There's still a ~1s offset delay at the moment of casting but the spell keeps those coordinates through the entire course of hits and statuses. Shatter Storm no longer creates a Poison Surface as most of the time this was igniting anyways and hindering the intended Conflux Status Congeal from being applied. There also seems to be an additional offset on coordinates when a surface is created which is partially why this spell was one of the worst offenders for targeting problems. I spent about 10 min each spamming these spells on a 1 turn CD after re-coding them.
+
+- Shatter Storm now applies Poison for 3 turns from 2 and now Contaminates water in order to counter it's new lack of poison surface.
+- Crystalline Barrage better explains its Physical damage portion is each strike for 20 strikes.
+- Lunar Pyre better explains its Fire damage portions is each strike for 3 strikes. The Comet portion can still be slightly off target due to it's entry angle. The only thing I could really do about this is increase the Comet's impact size to 6m so it should always hit enemies but will remain dangerous to players.
+- New lvl 9 Fire Skill added "Witchfire" Deals 100% Fire damage in a 3m radius. Applies Decay, Burning, Slow, Ignites surfaces and leaves behind a cloud of fire. Req. Pyro 2 / Necro 2.
+- Fixed typo on Ifan's Soul Wolf Skill removal. The skills should now be removed at their intended level OnLevelUp.
+
+3/28/2020 2:27 PM
+- Greatly improved targeting for Conflux spells. They should now be spot on.
+- Fixed Purifying Blaze from not damaging enemy undead with it's healing.
+- New lvl 8 Rogue Skill "Sanguine Blades" Deals 100% weapon damage. If performed from stealth deals 50% more damage. If the target is bleeding or proliferated deal 25% additional bonus damage with 25% Lifesteal and Weaken the target. 2AP, CD 4 turns.
+- Fixed Fisherman's Voidwoken Deep Dweller encounter. The enemy was scaling beyond intent.
+- Moved a few abilities on some encoutners to different units to be more advantageous to them.
+- Improved Haunting Wraith to better fit it's intended purpose. It no longer allows Attacks of Opportunity creating that ghostly feel. It also no longer wipes status effects (Both good and Bad) and only removes/ignores movement based ones.
+- Pact of Shadows now grants the caster it's 1AP recovery bonus as well.
+- Dodge values for templates has been reduced. This scaled with level and turned some unintended numbers for Rogue and Ranger base types.
+- Act 2 Void Touched Beastmaster and Arena Rogue now have their intended 105% Accuracy instead of 5% (derp)
+- The Melee Ice-Voidwoken in Modus' cave had their Physical armor increased slightly.
+- Blade Dervish damage per hit increased to 40% x5 from 35%. 
+- SkillBook Vendors now follow the intended Skillbook Levels to attain them.
+- Skillbook Vendor double books has been mostly fixed. Seem to only happen with Driftwood.
+- Bartering Skill and NPC Attitude Price variables have been changed slightly to favor Barter more. The result is a net gain for income of roughly +15% on characters who invest in the Bartering skill and reduces the effect of fluffing NPCs with junk for better prices. A comparison can be seen here: 
+- Ressurection Scrolls have been reduced in price. This is intended to lighten death from eating into player income too harshly. They still hold the same combat purpose and drawbacks which is the important part. Esp since the Phoenix Idol cannot be crafted in combat.
+- Gold Piles have been increased greatly in the amount given to help with economy needs not to mention make sense.
+- Fire King's Wraith now scales up to 4 stacks of Burning/Necrofire granting 25% bonus each to a max of 125%.
+
+3/29/2020 5:02 PM
+- Added "Double Whammy" code for Proliferate and Congeal. This was previously not active due to the late addition of the script extender but now if a character is suffering from both Slow and Burning they will recieve Prolif and Congeal status with one Chill application similar to how Virulent and Accelerant already work. 
+***Prolif was previously taking priorety over Congeal if the target was burning so you will likely see a lot more Congeal status. There is a balance concern here as now if an enemy is Burning and Slowed the Chill does not need to land to produce Congeal however if they're not burning it acts as normal. Of course Oil bypasses Armor and prduces slow so with Torturer Talent one could apply both effects through Armor.
+- Removed the explosion portion of "Hydra Bile" allowing it to always leave behind Poison Clouds. (Initially I wanted this to be a utility option, make a wall of clouds or do a little extra fire damage). Also fixed targeting size. It's 2m radius but was creating 3m clouds causing the targeting to be bigger than the actual impact.
+- Caustic Chasm damage increased to 155% from 90% Area reduced to 3m from 4m. This makes it the hybrid damage alternative to it's CC cousin Dust Blast at 130% damage 2m radius + Blind.
+- Fixed overhead text for Immunity Auras to properly display Resilience instead. 
+- Spirit Vision will now apply after being Ressurected by scrolls. Currently doesn't work for the Idol as the item is entirley scripted.
+- Funneling Aegis now also removes Frozen status.
+- Knockback effect has been removed from Blade Dervish. (This was conditionally good & bad though I found it more bad)
+- Both Two King skills are no longer auto-cast so the player can better judge when to use them.
+- Stun and Frozen statuses are now restricted to 1 turn durations. There were rare cases they could have 2 turn durations.
+- Added a pretty visual to Divine Vigor Boon so the radius is more easily defined.
+
+ — 3/30/2020 7:00 PM
+- Added more unique script controlled fight conditions to early encounters.
+- Changed Caustic Chasm req to 3 Geo from 4.
+- Reactive Armor reduced to 40% from 50% multiplier and 4m radius from 6m.
+- AP timer removed from Haunting Wraith. Just don't use it as your last AP for now.
+- Fixed description and SP cost on Apotheosis.
+- Immune to Charm flag has been added to the "Walk it Off" Barrier status. The script was changed so any attempt to charm will remove the stack and does not need to land otherwise Charm will never consume the Barrier as the character is immune. This is mostly for AoE effects and the AI should no longer try to Charm the character with the status up since they're flagged immune. This was also done with Fear and Curse.
+- Fixed UI description for a few hard CC items to properly display 1 turn durations. 
+
+4/2/2020 4:14 PM
+-Sleep added to Walk It Off Barrier list.
+-Frozen redundancy check for 3+ turns of Chill added.
+-Sneak has been given extra script to prevent enemies from tacking like their psychic. 
+-Daggers Drawn damage increased to 70% from 65%.
+-GodKing Ending is now a global debuff effect for previous followers.
+-Berserk Assault no longer cures enemies in the shout's damage radius.
+-Reduced a few Hard CC effects that were missed to 1 turn, mostly non parent enemy skills.
+
+4/12/2020 1:46 PM
+-The Reworked Terrifying Cruelty is now fully integrated.
+-Terrifying Cruelty's Debuff is generally cured by skills that also cure Bleed status.
+-Draconic Idol now has the stats of a large rock to prevent it from being combined into anything and discourage keeping it around. 
+-Cleaned up Act1 unique encounters.
+-Enemy Faerie Fire has been reduced in radius to 4m from the player version of 6m.
+-Enemies now have a small chance of reacting to invisibility potion use with Faerie Fire on their turn. (A common Invisibility Skill is more easily spotted than an uknown potion. This chance of reacting is intended to emulate a more natural surprise response to their target going invisible without somatic or visual aid.)
+-Act2 Unique Boss encoutner added and two Unique items added.
+-The Act2 "Paladin's attacked" event has reduced the potentcy of the Paladins and increased the potency of the attackers.
+-Memory slot growth has been increased to 0.75 from 0.5 by level 20 a character will have 15 extra memory slots from 10.
+-Ramped up Difficulty throughout Act3 and added a new Act3 Boss and 2 Uniques.
+-Randomized effects like chance to dodge spells or Rune status chance has been rebuilt with a better rolling system.
+-Mystical Framed Elemental runes now go up to 25% status chance compared to Power at 15%.
+-It's now possible to proc multiple statuses and instantly combine a Conflux with one weapon hit. Runes status lands first.
+
+4/12/2020 9:38 PM
+-Changed Check for Glass Cannon to combat started and pinged to update on the spot.
+-Runic Weaponry cleave runes will be removed if inserted into ranged/wands with a promp explaining.
+-Deflecting runes now have proper damage bonus.
+
+4/13/2020 6:24 AM
+-Resonating Globe AoE damage increased to 40% from 20%.
+-Fixed keystring entries and some code related typos.
+-Re-Scripted Unstable. It now has 3 tiers of damage, 40% Avg level damage in a 3m radius to 80% Vitality, 60% in a 4m radius down to 50% vitality and 80% damage in a 4m radius beyond that. Removed Curse surfaces from Unstable Alteration table. It's now a 4/1 (Blessed to normal cloud types) - May entirely remove some Cloud types that have no duration since changing them can conflict with story elements.
+-Re-Scripted Escapist. It now grants +30% movement while under the effect of movement impairing effects up from 25% and now grants a barrier charge when the character is hit by a hard status CC effect. This barrier will persist for 1 turn even if the CC status is cured and will absorb the first hard CC effect attempted. Escapist’s barrier will take priority over Walk It off for CC effects and some balance may need to be examined when stacking these talents.
+-Updated Talent descriptions to fit re-scripts and made others to be more explanatory.
+
+4/14/2020 12:24 AM
+-Deflecting runes are now set to their proper item category and won't be rolled on random items.
+-Unstable Alteration is deactivated while invisible or stealth though thematically proper and funny.
+-Enemies should no longer use Cleanse Wounds on players who are not Undead.
+-Bless is now 0 Memory Cost.
+-Removed Vitality bonus from Lone Wolf. Since it grants double attributes this should be easy to compensate in addition to extra skill points for easier access to stronger hybrid skills. This might end up siting around 10-15% but 30% is simply too much.
+-Reverted some changes made to Spirit Vision attempting to combat the Giftbag version.
+-Integrated mew Escapist for appropriate encounters. 
+
+4/15/2020 5:43 AM
+-Runic Weaponry Runes increased to 10/15/20% damage bonus.
+-Animals and some brutish creatures (Spiders, Wolves, Bears, Boars, Ghouls, Alligators, ect) have been given a "Rend" attack which does all of it's damage up front instead of 50x3 as animals were not making good use of Flurry due to animation limitations. This attack is nearly identical but with a 25% bleed chance. New casting animations were also added for this attack. Humanoids remain unchanged as they attack x3 with normal Flurry and it's easiest to give them skills.
+-Unstabled Talent re-scripted from the ground up. It should now feel a lot smoother with no animation stuttering and no longer procs out of combat. Unstable Vs Unstable characters has also been addressed. 4 negative surfaces added for a total of 18 outcomes at 3 to 1 beneficial ratio. (It was feeling too much like Leech). Unstable explosions use the character's Warfare, Crit Chance and Crit Damage.
+-Mnemonic now gives +5 Memory from +4.
+-Hail Strike no longer snaps to targets.
+-Arcanist's Overload feature no longer has a timer and no longer requires a staff but it can only be used in combat.
+
+4/15/2020 8:12 PM
+-Cleaned up Arcanist script and should only work for magic attacks. It can however last for 2 turns until utilized.
+-Unstable Alteration now also only activates when in combat.
+-Leech restore have been doubled Armors increased to 4% from 2% and Vitality 10% from 5%.
+-Set Runic Weaponry bonuses to min level 30 which should prevent the boost from being included in random itemization.
+-Added a bit more warning to Unique Act2 Boss mechanics. (Both Act2 & 3 bosses may be over tuned)
+
+4/17/2020 11:21 AM
+-Poison Potions now heal/deal 50% increased damage. This is done with a two tick application either of which can Crit. This puts them roughly the same as normal healing poitions after the first tick of poison status or potentially better on apply if the application crits.
+-Walk it Off Barrier will now apply on combat entered for NPCs.
+-Arcanist skill Phylactery can now be performed without breaking stealth.
+-New lvl 13 Rogue Skill Added "Brigand Maneuvers" Deals 110% 2AP 4CD. 50% Bonus damage from stealth and can maintain stealth. Applies one of two debuffs to the target if they have either no Physical or no Magical Armor. If stealth Apply Mugged: -10% All Resists including Physical and Piercing. Otherwise apply Skull Cracker: Causes -1AP Recovery, -30% Accuracy and Confusion to the target. Also applies Brigand Maneuvers to self which will dodge the next two attacks of any type.
+-BackStab damage now scales based on player level. 1% till lvl 10, 2% till lvl 15 and 3% per level afterwards up to 40% at lvl 21.
+-Berserk Assault Knockdown removed. Based Radius 1m from 2m, Rush portion reduced to 1AP and damage multiplier reduced to 120% from 125%.
+-Lone Wolf Life multiplier reverted to 25% until it can be tested further.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
